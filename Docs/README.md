@@ -47,31 +47,20 @@ cd Chicago-Style-Guide
 
 This repository contains structured guides for formatting LaTeX documents according to the Chicago Manual of Style. Choose the appropriate section based on your needs:
 
-- **Overall Document Formatting (`Overall-LaTeX/`)**
+- **Overall Document Formatting (`Overall/`)**
   Provides guidelines for setting up LaTeX documents, including:
   - Document class selection
   - Page layout configuration
   - Font settings
   - Header and footer formatting
   - Enabling double-spacing
+  - An **automation script (`compile.zsh`)** that simplifies compilation and logs the output.
 
-- **Chicago-Style Citations (`Citations-LaTeX/`)**
-  Contains detailed instructions for using the `biblatex-chicago` package to manage citations. Includes:
-  - Configuration of Chicago-style footnotes and bibliography
-  - Sample `.bib` file with references
-  - Citation commands (`\autocite`, `\footcite`, etc.)
-  - Example LaTeX document demonstrating correct formatting
-
-- **Automation Script (`compile.zsh`)**
-  Automates the document compilation process, executing:
-  - `xelatex` (initial compilation)
-  - `biber` (bibliography processing)
-  - `xelatex` (final compilation to resolve references)
-
-  To compile a document, run:
+  To compile a document in this section, navigate to the `Overall/` directory and run:
   ```bash
   ./compile.zsh
   ```
+  This script runs `xelatex` and `biber` in sequence and logs the output to `compile.log` for troubleshooting.
 
   Alternatively, manually execute:
   ```bash
@@ -80,6 +69,20 @@ This repository contains structured guides for formatting LaTeX documents accord
   xelatex essay.tex
   xelatex essay.tex
   ```
+
+- **Chicago-Style Citations (`Citations/`)**
+  Contains detailed instructions for using the `biblatex-chicago` package to manage citations. Includes:
+  - Configuration of Chicago-style footnotes and bibliography
+  - Sample `.bib` file with references
+  - Citation commands (`\autocite`, `\footcite`, etc.)
+  - Example LaTeX document demonstrating correct formatting
+  - An **automation script (`compile.zsh`)** for compiling documents with citations and logging the process.
+
+  To compile a document in this section, navigate to the `Citations/` directory and run:
+  ```bash
+  ./compile.zsh
+  ```
+  The script logs the compilation process to `compile.log` to track errors or warnings.
 
 ## Maintainers
 
