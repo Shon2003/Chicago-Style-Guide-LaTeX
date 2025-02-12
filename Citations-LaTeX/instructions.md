@@ -1,12 +1,12 @@
-# Using Chicago Manual of Style with LaTeX and biblatex-chicago
+# Using Chicago Manual of Style (Notes and Bibliography) with LaTeX and biblatex-chicago
 
-This guide explains how to set up your LaTeX document for Chicago Manual of Style footnotes and bibliography citations using the `biblatex-chicago` package. Below are the detailed instructions, code examples, and compilation steps using XeLaTeX.
+This guide explains how to set up your LaTeX document for Chicago Manual of Style (Notes and Bibliography) citations using the `biblatex-chicago` package. Below are the detailed instructions, code examples, and compilation steps using XeLaTeX.
 
 ---
 
 ## Step 1: Load the Package
 
-Include the following in your document preamble to load the `biblatex-chicago` package with the necessary options. The `notes` option enables Chicago-style footnotes. The `backend=biber` option specifies Biber as the bibliography processor and `short` enables shortened citations on subsequent uses.
+Include the following in your document preamble to load the `biblatex-chicago` package with the necessary options for notes and bibliography style. The `notes` option enables Chicago-style footnotes. The `backend=biber` option specifies Biber as the bibliography processor and `short` enables shortened citations on subsequent uses.
 
 ```latex
 \usepackage[notes,backend=biber,short]{biblatex-chicago}
@@ -26,7 +26,7 @@ Register your bibliography file (e.g. `references.bib`) in the preamble.
 
 ## Step 3: Citing Sources in Your Document
 
-Use the `\autocite` command to automatically generate Chicago-style footnotes for your citations. The first citation provides a full reference, and subsequent citations use a shortened format if the `short` option is enabled.
+Use the `\autocite` command to automatically generate Chicago-style footnotes (Notes and Bibliography style) for your citations. The first citation provides a full reference, and subsequent citations use a shortened format if the `short` option is enabled.
 
 **Example:**
 
@@ -52,33 +52,68 @@ At the end of your document, include the following command to display the comple
 
 ---
 
+## Step 4.5: Single Spacing in the Bibliography
+
+To ensure that the bibliography is single-spaced, include the following command before printing the bibliography:
+
+```latex
+\renewcommand{\bibfont}{\setstretch{1}}
+```
+
+---
+
 ## Step 5: Compilation Instructions with XeLaTeX
 
 To compile your document using XeLaTeX, follow these steps:
 
 1. Run XeLaTeX on your document:
-
    ```bash
    xelatex essay.tex
    ```
 
 2. Process the bibliography with Biber:
-
    ```bash
    biber essay
    ```
 
 3. Run XeLaTeX again to update references:
-
    ```bash
    xelatex essay.tex
    ```
 
 4. Run XeLaTeX one more time to ensure all citations are correctly updated:
-
    ```bash
    xelatex essay.tex
    ```
+
+**Combined:**
+```bash
+xelatex essay.tex && biber essay && xelatex essay.tex && xelatex essay.tex
+```
+
+### `compile.zsh` Script to Automate Compiling
+
+```bash
+echo "------------------------------------------------" | tee compile.log
+echo "xelatex essay.tex" | tee -a compile.log
+echo "------------------------------------------------" | tee -a compile.log
+xelatex -interaction=nonstopmode -file-line-error essay.tex 2>&1 | tee -a compile.log
+
+echo "------------------------------------------------" | tee -a compile.log
+echo "biber essay" | tee -a compile.log
+echo "------------------------------------------------" | tee -a compile.log
+biber essay 2>&1 | tee -a compile.log
+
+echo "------------------------------------------------" | tee -a compile.log
+echo "xelatex essay.tex" | tee -a compile.log
+echo "------------------------------------------------" | tee -a compile.log
+xelatex -interaction=nonstopmode -file-line-error essay.tex 2>&1 | tee -a compile.log
+
+echo "------------------------------------------------" | tee -a compile.log
+echo "xelatex essay.tex" | tee -a compile.log
+echo "------------------------------------------------" | tee -a compile.log
+xelatex -interaction=nonstopmode -file-line-error essay.tex 2>&1 | tee -a compile.log
+```
 
 ---
 
@@ -139,4 +174,4 @@ Below are sample entries from the `references.bib` file:
 
 ---
 
-With these steps, your LaTeX document is configured for Chicago Manual of Style citations using the `biblatex-chicago` package, and you are ready to compile with XeLaTeX.
+With these steps, your LaTeX document is configured for Chicago Manual of Style (Notes and Bibliography) citations using the `biblatex-chicago` package, and you are ready to compile with XeLaTeX.
