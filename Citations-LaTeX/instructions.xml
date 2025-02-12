@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <instructions>
-    <title>Using Chicago Manual of Style (Notes and Bibliography) with LaTeX and biblatex-chicago</title>
+    <title>Citations in Chicago Manual of Style (Notes and Bibliography) with LaTeX and
+        biblatex-chicago</title>
     <description>
         This guide explains how to set up your LaTeX document for Chicago Manual of Style (Notes and
         Bibliography) citations using the biblatex-chicago package. Below are detailed instructions,

@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<instructions>
+    <title>Using Chicago Manual of Style with LaTeX</title>
+    <description>
+        This guide explains how to set up your LaTeX document for Chicago Manual of Style (Notes and
+        Bibliography) citations using the biblatex-chicago package.
+        The instructions below integrate the document structure, citation commands, and compilation
+        steps.
+    </description>
+    <section id="create-file">
+        <title>Create a New LaTeX File</title>
+        <content>Create a new LaTeX file (e.g., <code>essay.tex</code>).</content>
+    </section>
+    <section id="document-class">
+        <title>Specify the Document Class and Input Encoding</title>
+        <code language="latex"><![CDATA[
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+    ]]></code>
+    </section>
+    <section id="load-font">
+        <title>Load Font and Font-Related Packages</title>
+        <code language="latex"><![CDATA[
+\usepackage{fontspec}
+\usepackage{lmodern}
+\setmainfont{Times New Roman}
+    ]]></code>
+    </section>
+    <section id="include-packages">
+        <title>Include Packages for Hyperlinks, Spacing, and Headers</title>
+        <code language="latex"><![CDATA[
+\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+    ]]></code>
+    </section>
+    <section id="page-layout">
+        <title>Configure Page Layout and Font Size</title>
+        <code language="latex"><![CDATA[
+\usepackage[margin=1in]{geometry}
+\usepackage[12pt]{moresize}
+    ]]></code>
+    </section>
+    <section id="bibliography-setup">
+        <title>Set Up the Bibliography for Chicago Notes and Bibliography Style</title>
+        <content>
+            This configuration uses the Chicago style with notes (footnote citations) and a
+            formatted bibliography.
+        </content>
+        <code language="latex"><![CDATA[
+\usepackage[notes,backend=biber,short]{biblatex-chicago}
+\addbibresource{references.bib}
+    ]]></code>
+    </section>
+    <section id="double-spacing">
+        <title>Enable Double Spacing</title>
+        <code language="latex"><![CDATA[
+\doublespacing
+    ]]></code>
+    </section>
+    <section id="custom-commands">
+        <title>Define Custom Commands for the Name Block and Essay Title</title>
+        <code language="latex"><![CDATA[
+\newcommand{\nameblock}[4][\today]{%
+
+    \noindent #2 \\
+    #3 \\
+    #4 \\
+    #1
+}
+
+\newcommand{\essaytitle}[1]{%
+    \begin{center}
+
+        {\normalsize \textbf{#1}}
+    \end{center}
+}
+    ]]></code>
+    </section>
+    <section id="header">
+        <title>Set Up the Header to Display the Page Number on the Right</title>
+        <code language="latex"><![CDATA[
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+    ]]></code>
+    </section>
+    <section id="begin-document">
+        <title>Begin the Document and Insert Content</title>
+        <code language="latex"><![CDATA[
+\begin{document}
+
+\nameblock{Your Name}{Course Info}{Instructor Name}
+
+\essaytitle{Your Essay Title}
+
+% Your essay content here using \autocite for citations
+    ]]></code>
+    </section>
+    <section id="citing-sources">
+        <title>Citing Sources in Your Document</title>
+        <content> Use the <code>\autocite</code> command to automatically generate Chicago-style
+            footnotes for your citations. The first citation provides a full reference, and
+            subsequent citations use a shortened format if the <code>short</code> option is enabled. </content>
+        <example>
+            <description>Example 1:</description>
+            <code language="latex"><![CDATA[
+World War I had lasting impacts on Germany\autocite{GermanHistoryVersailles}.
+      ]]></code>
+        </example>
+        <example>
+            <description>Example 2:</description>
+            <code language="latex"><![CDATA[
+Otto Dix depicted war as overwhelming destruction\autocite{UMMAArtilleryBattle}.
+      ]]></code>
+        </example>
+    </section>
+    <section id="print-bibliography">
+        <title>Print the Bibliography and Close the Document</title>
+        <code language="latex"><![CDATA[
+\clearpage
+
+\pagenumbering{gobble}
+
+\renewcommand{\bibfont}{\setstretch{1}}
+
+\printbibliography
+
+\end{document}
+    ]]></code>
+    </section>
+    <section id="compile-document">
+        <title>Compile the Document</title>
+        <content>
+            To compile your document using XeLaTeX and Biber, follow these steps:
+        </content>
+        <steps>
+            <step number="1">
+                <description>Run XeLaTeX on your document:</description>
+                <code language="bash"><![CDATA[
+xelatex essay.tex
+        ]]></code>
+            </step>
+            <step number="2">
+                <description>Process the bibliography with Biber:</description>
+                <code language="bash"><![CDATA[
+biber essay
+        ]]></code>
+            </step>
+            <step number="3">
+                <description>Run XeLaTeX again to update references:</description>
+                <code language="bash"><![CDATA[
+xelatex essay.tex
+        ]]></code>
+            </step>
+            <step number="4">
+                <description>Run XeLaTeX one more time to ensure all citations are correctly
+                    updated:</description>
+                <code language="bash"><![CDATA[
+xelatex essay.tex
+        ]]></code>
+            </step>
+        </steps>
+        <content>Combined command example:</content>
+        <code language="bash"><![CDATA[
+xelatex essay.tex && biber essay && xelatex essay.tex && xelatex essay.tex
+    ]]></code>
+    </section>
+    <section id="example-bibliography">
+        <title>Example Bibliography Entries</title>
+        <content> Below are sample entries for the <code>references.bib</code> file: </content>
+        <code language="bibtex"><![CDATA[
+@online{UMMAArtilleryBattle,
+    author      = {University of Michigan Museum of Art},
+    title       = {Artillery Battle (Artillerieschlacht)},
+    shortauthor = {UMMA},
+    shorttitle  = {Artillery Battle},
+    year        = {1917},
+    url         = {https://umma.umich.edu/objects/artillery-battle-artillerieschlacht-1967-1-41/},
+    urldate     = {2025-02-10},
+}
+
+@online{UMMAHunger,
+    author      = {University of Michigan Museum of Art},
+    title       = {Hunger},
+    shortauthor = {UMMA},
+    shorttitle  = {Hunger},
+    year        = {1924},
+    url         = {https://umma.umich.edu/objects/hunger-1957-1-105/},
+    urldate     = {2025-02-10},
+}
+
+@misc{Hartlaub1925,
+    author       = {Gustav Friedrich Hartlaub},
+    title        = {Introduction to the \textit{Neue Sachlichkeit} Exhibition Catalogue},
+    shortauthor  = {Hartlaub},
+    shorttitle   = {Neue Sachlichkeit},
+    howpublished = {Exhibition catalog, Kunsthalle Mannheim},
+    year         = {1925},
+}
+
+@book{Plumb2006,
+    author      = {Steve Plumb},
+    title       = {{\textit{Neue Sachlichkeit} 1918--33: Unity and Diversity of an Art Movement}},
+    shortauthor = {Plumb},
+    shorttitle  = {Neue Sachlichkeit 1918--33},
+    publisher   = {Rodopi},
+    address     = {Amsterdam},
+    year        = {2006},
+}
+
+@online{GermanHistoryVersailles,
+    author      = {German History in Documents and Images},
+    title       = {Treaty of Versailles and its Economic Impact},
+    shortauthor = {GHDI},
+    shorttitle  = {Versailles Economic Impact},
+    year        = {1919},
+    url         = {https://ghdi.ghi-dc.org/pdf/eng/DEST_SOLMITZ_ENG.pdf},
+    urldate     = {2025-02-10},
+}
+    ]]></code>
+    </section>
+    <section id="compile-script">
+        <title>compile.zsh Script to Automate Compiling</title>
+        <code language="bash"><![CDATA[
+echo "------------------------------------------------" | tee compile.log
+echo "xelatex essay.tex" | tee -a compile.log
+echo "------------------------------------------------" | tee -a compile.log
+xelatex -interaction=nonstopmode -file-line-error essay.tex 2>&1 | tee -a compile.log
+
+echo "------------------------------------------------" | tee -a compile.log
+echo "biber essay" | tee -a compile.log
+echo "------------------------------------------------" | tee -a compile.log
+biber essay 2>&1 | tee -a compile.log
+
+echo "------------------------------------------------" | tee -a compile.log
+echo "xelatex essay.tex" | tee -a compile.log
+echo "------------------------------------------------" | tee -a compile.log
+xelatex -interaction=nonstopmode -file-line-error essay.tex 2>&1 | tee -a compile.log
+
+echo "------------------------------------------------" | tee -a compile.log
+echo "xelatex essay.tex" | tee -a compile.log
+echo "------------------------------------------------" | tee -a compile.log
+xelatex -interaction=nonstopmode -file-line-error essay.tex 2>&1 | tee -a compile.log
+    ]]></code>
+    </section>
+</instructions>

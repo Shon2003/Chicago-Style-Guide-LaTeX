@@ -1,51 +1,80 @@
-# Using Chicago Manual of Style with LaTeX
+\documentclass{article}
 
-This guide explains how to set up your LaTeX document for Chicago Manual of Style (Notes and Bibliography) citations using the `biblatex-chicago` package. The instructions below integrate the necessary setup for the document structure along with detailed steps for citing sources and compiling your document using XeLaTeX.
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{setspace}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
 
-## Create a New LaTeX File
-Create a new LaTeX file (e.g., `essay.tex`).
+\lstset{%
+    language=[LaTeX]TeX,
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    numbers=none,
+    tabsize=2,
+    keywordstyle=\color{blue},
+    commentstyle=\color{gray},
+    stringstyle=\color{red},
+    showstringspaces=false,
+}
 
-## Specify the Document Class and Input Encoding
-```latex
+\title{Using Chicago Manual of Style with LaTeX}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Create a New LaTeX File}
+Create a new LaTeX file (e.g., \texttt{essay.tex}).
+
+\section{Specify the Document Class and Input Encoding}
+\begin{lstlisting}[language=TeX]
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-```
+\end{lstlisting}
 
-## Load Font and Font-Related Packages
-```latex
+\section{Load Font and Font-Related Packages}
+\begin{lstlisting}[language=TeX]
 \usepackage{fontspec}
 \usepackage{lmodern}
 \setmainfont{Times New Roman}
-```
+\end{lstlisting}
 
-## Include Packages for Hyperlinks, Spacing, and Headers
-```latex
+\section{Include Packages for Hyperlinks, Spacing, and Headers}
+\begin{lstlisting}[language=TeX]
 \usepackage{hyperref}
 \usepackage{setspace}
 \usepackage{fancyhdr}
-```
+\end{lstlisting}
 
-## Configure Page Layout and Font Size
-```latex
+\section{Configure Page Layout and Font Size}
+\begin{lstlisting}[language=TeX]
 \usepackage[margin=1in]{geometry}
 \usepackage[12pt]{moresize}
-```
+\end{lstlisting}
 
-## Set Up the Bibliography for Chicago Notes and Bibliography Style
+\section{Set Up the Bibliography for Chicago Notes and Bibliography Style}
 This configuration uses the Chicago style with notes (footnote citations) and a formatted bibliography.
-```latex
+\begin{lstlisting}[language=TeX]
 \usepackage[notes,backend=biber,short]{biblatex-chicago}
 \addbibresource{references.bib}
-```
+\end{lstlisting}
 
-## Enable Double Spacing
-```latex
+\section{Enable Double Spacing}
+\begin{lstlisting}[language=TeX]
 \doublespacing
-```
+\end{lstlisting}
 
-## Define Custom Commands for the Name Block and Essay Title
-```latex
+\section{Define Custom Commands for the Name Block and Essay Title}
+\begin{lstlisting}[language=TeX]
 \newcommand{\nameblock}[4][\today]{%
 
     \noindent #2 \\
@@ -60,18 +89,18 @@ This configuration uses the Chicago style with notes (footnote citations) and a 
         {\normalsize \textbf{#1}}
     \end{center}
 }
-```
+\end{lstlisting}
 
-## Set Up the Header to Display the Page Number on the Right
-```latex
+\section{Set Up the Header to Display the Page Number on the Right}
+\begin{lstlisting}[language=TeX]
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[R]{\thepage}
 \renewcommand{\headrulewidth}{0pt}
-```
+\end{lstlisting}
 
-## Begin the Document and Insert Content
-```latex
+\section{Begin the Document and Insert Content}
+\begin{lstlisting}[language=TeX]
 \begin{document}
 
 \nameblock{Your Name}{Course Info}{Instructor Name}
@@ -79,23 +108,24 @@ This configuration uses the Chicago style with notes (footnote citations) and a 
 \essaytitle{Your Essay Title}
 
 % Your essay content here using \autocite for citations
-```
+\end{lstlisting}
 
-## Citing Sources in Your Document
-Use the `\autocite` command to automatically generate Chicago-style footnotes for your citations. The first citation provides a full reference, and subsequent citations use a shortened format if the `short` option is enabled.
+\section{Citing Sources in Your Document}
+Use the \texttt{\textbackslash autocite} command to automatically generate Chicago-style footnotes for your citations.
+The first citation provides a full reference, and subsequent citations use a shortened format if the \texttt{short} option is enabled.
 
-**Example:**
-```latex
+\textbf{Example:}
+\begin{lstlisting}[language=TeX]
 World War I had lasting impacts on Germany\autocite{GermanHistoryVersailles}.
-```
+\end{lstlisting}
 
 Another example:
-```latex
+\begin{lstlisting}[language=TeX]
 Otto Dix depicted war as overwhelming destruction\autocite{UMMAArtilleryBattle}.
-```
+\end{lstlisting}
 
-## Print the Bibliography and Close the Document
-```latex
+\section{Print the Bibliography and Close the Document}
+\begin{lstlisting}[language=TeX]
 \clearpage
 
 \pagenumbering{gobble}
@@ -105,39 +135,44 @@ Otto Dix depicted war as overwhelming destruction\autocite{UMMAArtilleryBattle}.
 \printbibliography
 
 \end{document}
-```
+\end{lstlisting}
 
-## Compile the Document
+\section{Compile the Document}
 To compile your document using XeLaTeX and Biber, follow these steps:
 
-1. **Run XeLaTeX on your document:**
-   ```bash
-   xelatex essay.tex
-   ```
+\begin{enumerate}
+    \item Run XeLaTeX on your document:
+          \begin{lstlisting}[language=bash]
+xelatex essay.tex
+    \end{lstlisting}
 
-2. **Process the bibliography with Biber:**
-   ```bash
-   biber essay
-   ```
+    \item Process the bibliography with Biber:
+          \begin{lstlisting}[language=bash]
+biber essay
+    \end{lstlisting}
 
-3. **Run XeLaTeX again to update references:**
-   ```bash
-   xelatex essay.tex
-   ```
+    \item Run XeLaTeX again to update references:
+          \begin{lstlisting}[language=bash]
+xelatex essay.tex
+    \end{lstlisting}
 
-4. **Run XeLaTeX one more time to ensure all citations are correctly updated:**
-   ```bash
-   xelatex essay.tex
-   ```
+    \item Run XeLaTeX one more time to ensure all citations are correctly updated:
+          \begin{lstlisting}[language=bash]
+xelatex essay.tex
+    \end{lstlisting}
+\end{enumerate}
 
-**Combined command example:**
-```bash
+Combined command example:
+\begin{lstlisting}[language=bash]
 xelatex essay.tex && biber essay && xelatex essay.tex && xelatex essay.tex
-```
+\end{lstlisting}
 
-## Example Bibliography Entries
-Below are sample entries for the `references.bib` file:
-```bibtex
+\clearpage
+
+\section{Example Bibliography Entries}
+Below are sample entries for the \texttt{references.bib} file:
+
+\begin{lstlisting}
 @online{UMMAArtilleryBattle,
     author      = {University of Michigan Museum of Art},
     title       = {Artillery Battle (Artillerieschlacht)},
@@ -186,11 +221,13 @@ Below are sample entries for the `references.bib` file:
     url         = {https://ghdi.ghi-dc.org/pdf/eng/DEST_SOLMITZ_ENG.pdf},
     urldate     = {2025-02-10},
 }
-```
+\end{lstlisting}
 
-## \texttt{compile.zsh} Script to Automate Compiling
+\clearpage
+
+\section{\texttt{compile.zsh} Script to Automate Compiling}
 Below is an example shell script to automate the compiling process:
-```bash
+\begin{lstlisting}[language=bash]
 echo "------------------------------------------------" | tee compile.log
 echo "xelatex essay.tex" | tee -a compile.log
 echo "------------------------------------------------" | tee -a compile.log
@@ -210,4 +247,6 @@ echo "------------------------------------------------" | tee -a compile.log
 echo "xelatex essay.tex" | tee -a compile.log
 echo "------------------------------------------------" | tee -a compile.log
 xelatex -interaction=nonstopmode -file-line-error essay.tex 2>&1 | tee -a compile.log
-```
+\end{lstlisting}
+
+\end{document}
