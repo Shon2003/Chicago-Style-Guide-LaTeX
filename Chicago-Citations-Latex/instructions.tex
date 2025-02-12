@@ -1,0 +1,191 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{geometry}
+
+\geometry{margin=1in}
+
+
+\lstset{language=[LaTeX]TeX}
+
+% Configure listings for code blocks using supported languages
+\lstset{%
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    numbers=none,
+    tabsize=2,
+    keywordstyle=\color{blue},
+    commentstyle=\color{gray},
+    stringstyle=\color{red}
+}
+
+\title{Using Chicago Manual of Style with LaTeX and biblatex-chicago}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+This guide explains how to set up your LaTeX document for Chicago Manual of Style footnotes and bibliography citations using the \texttt{biblatex-chicago} package. Below are the detailed instructions, code examples, and compilation steps using XeLaTeX.
+
+\bigskip
+
+\section*{Step 1: Load the Package}
+
+Include the following in your document preamble to load the \texttt{biblatex-chicago} package with the necessary options. The \texttt{notes} option enables Chicago-style footnotes. The \texttt{backend=biber} option specifies Biber as the bibliography processor and \texttt{short} enables shortened citations on subsequent uses.
+
+\begin{lstlisting}
+\usepackage[notes,backend=biber,short]{biblatex-chicago}
+\end{lstlisting}
+
+\bigskip
+
+\section*{Step 2: Add the Bibliography Resource}
+
+Register your bibliography file (e.g. \texttt{references.bib}) in the preamble.
+
+\begin{lstlisting}
+\addbibresource{references.bib}
+\end{lstlisting}
+
+\bigskip
+
+\section*{Step 3: Citing Sources in Your Document}
+
+Use the \verb|\autocite| command to automatically generate Chicago-style footnotes for your citations. The first citation provides a full reference, and subsequent citations use a shortened format if the \texttt{short} option is enabled.
+
+\textbf{Example:}
+
+\begin{lstlisting}
+World War I had lasting impacts on Germany\autocite{GermanHistoryVersailles}.
+\end{lstlisting}
+
+Another example:
+
+\begin{lstlisting}
+Otto Dix depicted war as overwhelming destruction\autocite{UMMAArtilleryBattle}.
+\end{lstlisting}
+
+\bigskip
+
+\section*{Step 4: Print the Bibliography}
+
+At the end of your document, include the following command to display the complete bibliography:
+
+\begin{lstlisting}
+\printbibliography
+\end{lstlisting}
+
+\bigskip
+
+\section*{Step 4.5: Single Spacing in the Bibliography}
+
+To ensure that the bibliography is single-spaced, include the following command before printing the bibliography:
+
+\begin{lstlisting}
+\renewcommand{\bibfont}{\setstretch{1}}
+\end{lstlisting}
+
+\bigskip
+
+\section*{Step 5: Compilation Instructions with XeLaTeX}
+
+To compile your document using XeLaTeX, follow these steps:
+
+\begin{enumerate}
+    \item Run XeLaTeX on your document:
+          \begin{lstlisting}[language=bash]
+xelatex essay.tex
+          \end{lstlisting}
+
+    \item Process the bibliography with Biber:
+          \begin{lstlisting}[language=bash]
+biber essay
+          \end{lstlisting}
+
+    \item Run XeLaTeX again to update references:
+          \begin{lstlisting}[language=bash]
+xelatex essay.tex
+          \end{lstlisting}
+
+    \item Run XeLaTeX one more time to ensure all citations are correctly updated:
+          \begin{lstlisting}[language=bash]
+xelatex essay.tex
+        \end{lstlisting}
+\end{enumerate}
+
+Combined:
+\begin{lstlisting}[language=bash]
+xelatex essay.tex && biber essay && xelatex essay.tex && xelatex essay.tex
+\end{lstlisting}
+
+\clearpage
+
+\section*{Step 6: Example Bibliography Entries}
+
+Below are sample entries from the \texttt{references.bib} file:
+
+\begin{lstlisting}
+@online{UMMAArtilleryBattle,
+    author      = {University of Michigan Museum of Art},
+    title       = {Artillery Battle (Artillerieschlacht)},
+    shortauthor = {UMMA},
+    shorttitle  = {Artillery Battle},
+    year        = {1917},
+    url         = {https://umma.umich.edu/objects/artillery-battle-artillerieschlacht-1967-1-41/},
+    urldate     = {2025-02-10},
+}
+
+@online{UMMAHunger,
+    author      = {University of Michigan Museum of Art},
+    title       = {Hunger},
+    shortauthor = {UMMA},
+    shorttitle  = {Hunger},
+    year        = {1924},
+    url         = {https://umma.umich.edu/objects/hunger-1957-1-105/},
+    urldate     = {2025-02-10},
+}
+
+@misc{Hartlaub1925,
+    author       = {Gustav Friedrich Hartlaub},
+    title        = {Introduction to the \textit{Neue Sachlichkeit} Exhibition Catalogue},
+    shortauthor  = {Hartlaub},
+    shorttitle   = {Neue Sachlichkeit},
+    howpublished = {Exhibition catalog, Kunsthalle Mannheim},
+    year         = {1925},
+}
+
+@book{Plumb2006,
+    author      = {Steve Plumb},
+    title       = {{\textit{Neue Sachlichkeit} 1918--33: Unity and Diversity of an Art Movement}},
+    shortauthor = {Plumb},
+    shorttitle  = {Neue Sachlichkeit 1918--33},
+    publisher   = {Rodopi},
+    address     = {Amsterdam},
+    year        = {2006},
+}
+
+@online{GermanHistoryVersailles,
+    author      = {German History in Documents and Images},
+    title       = {Treaty of Versailles and its Economic Impact},
+    shortauthor = {GHDI},
+    shorttitle  = {Versailles Economic Impact},
+    year        = {1919},
+    url         = {https://ghdi.ghi-dc.org/pdf/eng/DEST_SOLMITZ_ENG.pdf},
+    urldate     = {2025-02-10},
+}
+\end{lstlisting}
+
+\bigskip
+
+With these steps, your LaTeX document is configured for Chicago Manual of Style citations using the \texttt{biblatex-chicago} package, and you are ready to compile with XeLaTeX.
+
+\end{document}
