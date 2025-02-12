@@ -52,7 +52,7 @@ At the end of your document, include the following command to display the comple
 
 ---
 
-## Step 4.5: Single Spacing in the Bibliography
+### Step 4.5: Single Spacing in the Bibliography
 
 To ensure that the bibliography is single-spaced, include the following command before printing the bibliography:
 

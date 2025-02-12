@@ -34,7 +34,7 @@ This guide explains how to set up your LaTeX document for Chicago Manual of Styl
 
 \vspace{1em}
 
-\section*{Step 1: Load the Package}
+\section{Load the Package}
 
 Include the following in your document preamble to load the \texttt{biblatex-chicago} package with the necessary options. The \texttt{notes} option enables Chicago-style footnotes, and this configuration is for the notes and bibliography style. The \texttt{backend=biber} option specifies Biber as the bibliography processor and \texttt{short} enables shortened citations on subsequent uses.
 
@@ -44,7 +44,7 @@ Include the following in your document preamble to load the \texttt{biblatex-chi
 
 \vspace{1em}
 
-\section*{Step 2: Add the Bibliography Resource}
+\section{Add the Bibliography Resource}
 
 Register your bibliography file (e.g. \texttt{references.bib}) in the preamble.
 
@@ -54,7 +54,7 @@ Register your bibliography file (e.g. \texttt{references.bib}) in the preamble.
 
 \vspace{1em}
 
-\section*{Step 3: Citing Sources in Your Document}
+\section{Citing Sources in Your Document}
 
 Use the \verb|\autocite| command to automatically generate Chicago-style footnotes for your citations (Notes and Bibliography style). The first citation provides a full reference, and subsequent citations use a shortened format if the \texttt{short} option is enabled.
 
@@ -72,7 +72,7 @@ Otto Dix depicted war as overwhelming destruction\autocite{UMMAArtilleryBattle}.
 
 \vspace{1em}
 
-\section*{Step 4: Print the Bibliography}
+\section{Print the Bibliography}
 
 At the end of your document, include the following command to display the complete bibliography:
 
@@ -82,7 +82,7 @@ At the end of your document, include the following command to display the comple
 
 \vspace{1em}
 
-\section*{Step 4.5: Single Spacing in the Bibliography}
+\subsection{Single Spacing in the Bibliography}
 
 To ensure that the bibliography is single-spaced, include the following command before printing the bibliography:
 
@@ -92,7 +92,7 @@ To ensure that the bibliography is single-spaced, include the following command 
 
 \vspace{1em}
 
-\section*{Step 5: Compilation Instructions with XeLaTeX}
+\section{Compilation Instructions with XeLaTeX}
 
 To compile your document using XeLaTeX, follow these steps:
 
@@ -123,7 +123,7 @@ xelatex essay.tex
 xelatex essay.tex && biber essay && xelatex essay.tex && xelatex essay.tex
 \end{lstlisting}
 
-\subsection*{\texttt{compile.zsh} Script to Automate Compiling}
+\subsection{\texttt{compile.zsh} Script to Automate Compiling}
 \begin{lstlisting}[language=bash]
 echo "------------------------------------------------" | tee compile.log
 echo "xelatex essay.tex" | tee -a compile.log
@@ -149,7 +149,7 @@ xelatex -interaction=nonstopmode -file-line-error essay.tex 2>&1 | tee -a compil
 \vspace{1em}
 \clearpage
 
-\section*{Step 6: Example Bibliography Entries}
+\section{Example Bibliography Entries}
 
 Below are sample entries from the \texttt{references.bib} file:
 
