@@ -48,6 +48,7 @@ cd Chicago-Style-Guide
 This repository contains structured guides for formatting LaTeX documents according to the Chicago Manual of Style. Choose the appropriate section based on your needs:
 
 - **Overall Document Formatting (`Overall/`)**
+
   Provides guidelines for setting up LaTeX documents, including:
   - Document class selection
   - Page layout configuration
@@ -60,17 +61,10 @@ This repository contains structured guides for formatting LaTeX documents accord
   ```bash
   ./compile.zsh
   ```
-  This script runs `xelatex` and `biber` in sequence and logs the output to `compile.log` for troubleshooting.
-
-  Alternatively, manually execute:
-  ```bash
-  xelatex essay.tex
-  biber essay
-  xelatex essay.tex
-  xelatex essay.tex
-  ```
+  The script logs the compilation process to the specified log file and deletes auxiliary files if no errors are found. The variables `TEX_FILE` and `LOG_FILE` at the top of the script allow you to easily change the names of the LaTeX source and log files.
 
 - **Chicago-Style Citations (`Citations/`)**
+
   Contains detailed instructions for using the `biblatex-chicago` package to manage citations. Includes:
   - Configuration of Chicago-style footnotes and bibliography
   - Sample `.bib` file with references
@@ -82,7 +76,7 @@ This repository contains structured guides for formatting LaTeX documents accord
   ```bash
   ./compile.zsh
   ```
-  The script logs the compilation process to `compile.log` to track errors or warnings.
+  The script logs the compilation process to the specified log file and deletes auxiliary files if no errors are found. The variables `TEX_FILE` and `LOG_FILE` at the top of the script allow you to easily change the names of the LaTeX source and log files.
 
 ## Maintainers
 
