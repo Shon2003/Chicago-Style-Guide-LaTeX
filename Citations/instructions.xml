@@ -48,11 +48,11 @@ Otto Dix depicted war as overwhelming destruction\autocite{UMMAArtilleryBattle}.
 
     <step id="4">
         <title>Print the Bibliography</title>
-        <description>
-            At the end of your document, include the following command to display the complete
-            bibliography.
-        </description>
+        <description>At the end of your document, include the following commands to display the
+            complete bibliography on its own page:</description>
         <code language="latex"><![CDATA[
+\clearpage
+
 \printbibliography
     ]]></code>
     </step>
