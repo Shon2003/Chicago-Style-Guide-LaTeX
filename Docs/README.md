@@ -11,6 +11,7 @@ This repository provides structured instructions, templates, and scripts to faci
 
 - [Install](#install)
 - [Usage](#usage)
+- [Compile Script](#compile-script)
 - [Maintainers](#maintainers)
 
 ## Install
@@ -24,15 +25,18 @@ Ensure you have a LaTeX distribution with **XeLaTeX** and **Biber** installed. T
   ```bash
   brew install biber
   ```
+
 - **Linux (Debian/Ubuntu):**
   ```bash
   sudo apt-get update
   sudo apt-get install texlive-xetex texlive-bibtex-extra biber
   ```
+
 - **Linux (Arch-based):**
   ```bash
   sudo pacman -Syu texlive-core texlive-bibtexextra biber
   ```
+
 - **Windows:**
   Install [TeX Live](https://www.tug.org/texlive/) and ensure `xelatex` and `biber` are added to your system PATH.
 
@@ -55,13 +59,8 @@ This repository contains structured guides for formatting LaTeX documents accord
   - Font settings
   - Header and footer formatting
   - Enabling double-spacing
-  - An **automation script (`compile.zsh`)** that simplifies compilation and logs the output.
 
-  To compile a document in this section, navigate to the `Overall/` directory and run:
-  ```bash
-  ./compile.zsh
-  ```
-  The script logs the compilation process to the specified log file and deletes auxiliary files if no errors are found. The variables `TEX_FILE` and `LOG_FILE` at the top of the script allow you to easily change the names of the LaTeX source and log files.
+  For compilation, refer to the [Compile Script](#compile-script) section.
 
 - **Chicago-Style Citations (`Citations/`)**
 
@@ -70,13 +69,29 @@ This repository contains structured guides for formatting LaTeX documents accord
   - Sample `.bib` file with references
   - Citation commands (`\autocite`, `\footcite`, etc.)
   - Example LaTeX document demonstrating correct formatting
-  - An **automation script (`compile.zsh`)** for compiling documents with citations and logging the process.
 
-  To compile a document in this section, navigate to the `Citations/` directory and run:
-  ```bash
-  ./compile.zsh
-  ```
-  The script logs the compilation process to the specified log file and deletes auxiliary files if no errors are found. The variables `TEX_FILE` and `LOG_FILE` at the top of the script allow you to easily change the names of the LaTeX source and log files.
+  For compilation, refer to the [Compile Script](#compile-script) section.
+
+## Compile Script
+
+The repository includes an automation script (`compile.zsh`) that simplifies the compilation process by logging output and cleaning up auxiliary files if no errors occur. Customize the `TEX_FILE` and `LOG_FILE` variables at the top of the script as needed.
+
+To run the script:
+
+Run this once to make it executable:
+```zsh
+chmod +x compile.zsh
+```
+
+Then execute it:
+```bash
+./compile.zsh
+```
+
+Alternatively, run without changing permissions:
+```zsh
+zsh compile.zsh
+```
 
 ## Maintainers
 
